@@ -3,7 +3,7 @@
 #include "ll.h"
 
 lista_t create_list(){
-	return (lista_t){NULL, 0};
+	return (lista_t){NULL, NULL, 0};
 }
 
 void print_list(lista_t l){
@@ -20,13 +20,13 @@ void push(lista_t *l, char v){
 	elem_t *new = malloc(sizeof(elem_t));
 	new->value = v;
 	new->next = NULL;
-	if (l->head){
-		elem_t *c = l->head;
-		while (c->next) c = c->next;
-		c->next = new;
+	new->prev = l->last;
+	if (l->length){
+		l->last->next = new;
+		l->last = new;
 		l->length++;
 	} else {
-		*l = (lista_t){new, 1};
+		*l = (lista_t){new, new, 1};
 	}
 }
 

@@ -4,10 +4,12 @@
 typedef struct elem {
 	char value;
 	struct elem *next;
+	struct elem *prev;
 } elem_t;
 
 typedef struct {
 	elem_t* head;
+	elem_t* last;
 	int length;
 } lista_t;
 
